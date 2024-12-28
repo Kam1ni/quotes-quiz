@@ -26,7 +26,7 @@ if (process.env.SSL_CERT && process.env.SSL_KEY) {
 	server = require("http").createServer(app)
 }
 
-const io = socketio(server);
+const io = socketio(server, {cors:{origin:"*"}});
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {

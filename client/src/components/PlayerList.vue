@@ -1,6 +1,9 @@
 <template>
-	<div class="player-list">
-		<div class="title">Players</div>
+	<div class="player-list" :class="extraClasses">
+		<div class="title">Players
+			<div class="spacer"/>
+			<button class="hide-lg" @click="toggleScoreBoard()">X</button>
+		</div>
 		<div class="player" v-for="player in players" :key="player.username" :class="{ready:player.ready, disconnected:!player.connected, currentPlayer:isCurrentPlayer(player)}">
 			<div class="name">{{player.username}}</div>
 			<div class="score">Score: {{player.score}}</div>
@@ -19,6 +22,11 @@ export default {
 	computed:{
 		players(){
 			return state.gameData.players;
+		},
+		extraClasses(){
+			return {
+				closed:!state.sideBarOpen
+			}
 		}
 	},
 	methods:{
@@ -27,6 +35,9 @@ export default {
 		},
 		isCurrentPlayer(player){
 			return player.username == connectionState.username;
+		},
+		toggleScoreBoard(){
+			state.sideBarOpen = !state.sideBarOpen;
 		}
 	}
 }
@@ -52,6 +63,8 @@ export default {
 .title {
 	font-size: 25px;
 	padding: 10px;
+	display: flex;
+	flex-direction: row;
 }
 
 .player {
@@ -88,5 +101,16 @@ export default {
 
 .exit-button{
 	margin: 10px
+}
+
+@media screen and (max-width: 600px) {
+	.player-list.closed {
+		width: 0;
+	}
+
+	.player-list{
+		width: 100%;
+		transition: width 1s;
+	}
 }
 </style>

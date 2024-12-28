@@ -16,6 +16,10 @@ export function setConnectionState(val){
 let connecting = false;
 
 async function getSocketOrigin(){
+	if (process.env.NODE_ENV == "development"){
+		return "ws://localhost:3000"
+	}
+
 	let response = await Axios.get("/server-port");
 	let port = await response.data;
 	response = await Axios.get("/has-ssl");

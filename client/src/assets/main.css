@@ -39,3 +39,10 @@ button {
 	border:none;
 	border-radius: 3px;
 }
+
+
+@media screen and (min-width: 601px) {
+	.hide-lg {
+		display:none;
+	}
+}

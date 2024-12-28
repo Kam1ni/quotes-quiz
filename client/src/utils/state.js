@@ -9,7 +9,8 @@ export let state = {
 			answer:""
 		},
 		questionIndex:0,
-		questionCount:0
+		questionCount:0,
+		sideBarOpen:false
 	}
 }
 

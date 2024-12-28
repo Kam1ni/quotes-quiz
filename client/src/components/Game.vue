@@ -5,7 +5,7 @@ import AppShowAnswer from "./ShowAnswer.vue";
 
 <template>
 	<div class="container">
-		<div class="title">Quotes Quiz</div>
+		<div class="title"><button class="hide-lg" @click="togglePlayersBar()">SCORE</button> Quotes Quiz</div>
 		<app-question v-if="gameState=='question'"></app-question>
 		<app-show-answer v-else-if="gameState=='answer'"></app-show-answer>
 		<div v-else-if="gameState=='game-over'">Game Over</div>
@@ -33,6 +33,11 @@ export default {
 		},
 		questionCountText(){
 			return `Question ${this.state.gameData.questionIndex+1} of ${this.state.gameData.questionCount}`;
+		}
+	},
+	methods:{
+		togglePlayersBar(){
+			this.state.sideBarOpen = !this.state.sideBarOpen;
 		}
 	}
 }
